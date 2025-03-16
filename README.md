@@ -70,18 +70,17 @@ In advanced stages, the focus shifts to improving query performance. Some optimi
 
 
 1.**Retrieve the names of all tracks that have more than 1 billion streams**.
-"""sql
+```sql
 SELECT track FROM spotify 
 WHERE stream>1000000000;
-'''
+```
 2.**List all albums along with their respective artists**.
-'''sql
+```sql
 SELECT DISTINCT album AS Album_1, artist AS Spotify_Artist FROM spotify 
 ORDER BY 1;
-'''
-3. **Get the total number of comments for tracks where `licensed = TRUE`**.
 ```
-SQL
+3. **Get the total number of comments for tracks where `licensed = TRUE`**.
+```SQL
 SELECT SUM(comments) FROM spotify
 WHERE licensed = 'True';
 ```
