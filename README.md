@@ -90,22 +90,19 @@ SELECT DISTINCT track FROM spotify
 WHERE album_type ='single';
 ```
 5. **Count the total number of tracks by each artist**.
-```
-SQL
+```SQL
 SELECT COUNT(track) as songs,artist FROM spotify
 GROUP BY artist
 ORDER BY songs;
 ```
 6. **Calculate the average danceability of tracks in each album**.
-```
-SQL
+```SQL
 SELECT album, AVG(danceability) FROM spotify
 GROUP BY album
 ORDER BY 1 DESC;
 ```
 7. **Find the top 5 tracks with the highest energy values**.
-```
-SQL
+```SQL
 SELECT * FROM spotify
 WHERE energy = ANY (SELECT energy FROM spotify ORDER BY energy DESC LIMIT 5);
 ;
@@ -116,16 +113,14 @@ ORDER BY AVG(energy) DESC
 LIMIT 5;
 ```
 8. **List all tracks along with their views and likes where `official_video = TRUE`**.
-```
-SQL
+```SQL
 SELECT track, SUM(views) AS total_views, SUM(likes) AS total_likes FROM spotify
 WHERE official_video='True'
 GROUP BY track
 ORDER BY total_likes DESC;
 ```
 9. **For each album, calculate the total views of all associated tracks**.
-```
-SQL
+```SQL
 SELECT album,track, SUM(views) FROM spotify
 group by album,track
 HAVING SUM(views)>10000000000
@@ -133,8 +128,7 @@ order by track
 ;
 ```
 10. **Retrieve the track names that have been streamed on Spotify more than YouTube**.
-```
-SQL
+```SQL
 SELECT * FROM (SELECT track, COALESCE(SUM(CASE WHEN most_played_on = 'Spotify' THEN stream END),0) AS spotify_played, 
 COALESCE(SUM(CASE WHEN most_played_on = 'Youtube' THEN stream END),0) AS youtube_played FROM spotify
 GROUP BY track) AS t1
@@ -142,8 +136,7 @@ WHERE t1.spotify_played > t1.youtube_played AND t1.youtube_played > 0;
 ```
 
 11. **Find the top 3 most-viewed tracks for each artist using window functions**.
-```
-SQL
+```SQL
 WITH ranking_Artist AS(SELECT artist,track, SUM(views) AS total_views,
 DENSE_RANK() OVER(PARTITION BY artist ORDER BY SUM(views) DESC) AS rank
 FROM spotify
@@ -177,8 +170,7 @@ ORDER BY 2 DESC
 ```
    
 14. **Find tracks where the energy-to-liveness ratio is greater than 1.2**.
-```
-SQL
+```SQL
 SELECT track, CAST(energy/liveness AS DECIMAL(10,2)) AS energy_to_liveness FROM spotify
 WHERE CAST(energy/liveness AS DECIMAL(10,2))> 1.2 AND liveness !=0 
 ORDER BY energy_to_liveness;
