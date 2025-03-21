@@ -119,7 +119,6 @@ CREATE INDEX ix_spotify_energy ON spotify (energy);
 
 ![7 BEFORE INDEXING](https://github.com/user-attachments/assets/e95edb94-bcd3-4358-910b-af096222bb7c)
 
-
 SELECT track,AVG(energy) FROM spotify
 GROUP BY track
 ORDER BY AVG(energy) DESC
