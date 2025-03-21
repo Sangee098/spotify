@@ -117,9 +117,7 @@ WHERE energy = ANY (SELECT energy FROM spotify ORDER BY energy DESC LIMIT 5);
 
 CREATE INDEX ix_spotify_energy ON spotify (energy);
 
-![image](https://github.com/user-attachments/assets/b7af4c74-9ff6-4687-a3fe-0f3776040d51)
-
-![image](https://github.com/user-attachments/assets/68ca2f0d-f05b-4281-b85a-52c8cdda54b5)
+![7 BEFORE INDEXING](https://github.com/user-attachments/assets/e95edb94-bcd3-4358-910b-af096222bb7c)
 
 
 SELECT track,AVG(energy) FROM spotify
