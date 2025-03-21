@@ -74,6 +74,8 @@ In advanced stages, the focus shifts to improving query performance. Some optimi
 EXPLAIN ANALYZE --Execution Time: 8.534 ms|||After indexing: Execution Time: 0.310 ms
 SELECT track FROM spotify 
 WHERE stream>1000000000;
+
+CREATE INDEX IX_spotify_stream ON spotify(stream);
 ```
 2.**List all albums along with their respective artists**.
 ```sql
@@ -82,8 +84,12 @@ ORDER BY 1;
 ```
 3. **Get the total number of comments for tracks where `licensed = TRUE`**.
 ```SQL
+Explain analyze --Execution Time: 11.213 ms changed to Execution Time: 9.622 ms after indexing
 SELECT SUM(comments) FROM spotify
 WHERE licensed = 'True';
+
+CREATE INDEX ix_spotify_licensed ON SPOTIFY(licensed);
+
 ```
 4. **Find all tracks that belong to the album type `single`**.
 ```SQL
@@ -104,9 +110,17 @@ ORDER BY 1 DESC;
 ```
 7. **Find the top 5 tracks with the highest energy values**.
 ```SQL
+EXPLAIN ANALYZE --Execution Time: 12.721 ms ||| Execution Time: 0.114 ms after index
 SELECT * FROM spotify
 WHERE energy = ANY (SELECT energy FROM spotify ORDER BY energy DESC LIMIT 5);
 ;
+
+CREATE INDEX ix_spotify_energy ON spotify (energy);
+
+![image](https://github.com/user-attachments/assets/b7af4c74-9ff6-4687-a3fe-0f3776040d51)
+
+![image](https://github.com/user-attachments/assets/68ca2f0d-f05b-4281-b85a-52c8cdda54b5)
+
 
 SELECT track,AVG(energy) FROM spotify
 GROUP BY track
