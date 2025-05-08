@@ -1,6 +1,4 @@
 # Spotify Advanced SQL Project and Query Optimization P-6
-Project Category: Advanced
-[Click Here to get Dataset](https://www.kaggle.com/datasets/sanjanchaudhari/spotify-dataset)
 
 ![Spotify Logo](https://github.com/najirh/najirh-Spotify-Data-Analysis-using-SQL/blob/main/spotify_logo.jpg)
 
@@ -48,7 +46,7 @@ Before diving into SQL, it’s important to understand the dataset thoroughly. T
 - Various metrics such as `danceability`, `energy`, `loudness`, `tempo`, and more.
 
 ### 4. Querying the Data
-After the data is inserted, various SQL queries can be written to explore and analyze the data. Queries are categorized into **easy**, **medium**, and **advanced** levels to help progressively develop SQL proficiency.
+After the data is inserted, various SQL queries can be written to explore and analyze the data.
 
 #### Easy Queries
 - Simple data retrieval, filtering, and basic aggregations.
@@ -65,9 +63,6 @@ In advanced stages, the focus shifts to improving query performance. Some optimi
 - **Query Execution Plan**: Using `EXPLAIN ANALYZE` to review and refine query performance.
   
 ---
-
-## 15 Practice Questions
-
 
 1.**Retrieve the names of all tracks that have more than 1 billion streams**.
 ```sql
